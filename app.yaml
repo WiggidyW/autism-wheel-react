@@ -1,5 +1,6 @@
 ﻿runtime: nodejs18
-service: autism-wheel-react
+# service: autism-wheel-react
+service: default
 instance_class: F1
 handlers:
   # Serve all static files with url ending with a file extension
