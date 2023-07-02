@@ -1,0 +1,18 @@
+﻿steps:
+  - name: node
+    entrypoint: npm
+    args:
+      - "install"
+  - name: node
+    entrypoint: npm
+    args:
+      - "run"
+      - "build"
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - "app"
+      - "deploy"
+timeout: "600s"
+options:
+  logging: CLOUD_LOGGING_ONLY
