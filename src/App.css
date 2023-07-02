@@ -1,0 +1,27 @@
+#root {
+  background-color: #1f2327;
+  text-align: center;
+  padding: 8px;
+  height: calc(100% - 16px);
+  width: calc(100% - 16px);
+  min-height: 496px;
+  min-width: 1136px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.awr-app {
+  height: 100%;
+  width: 100%;
+}
+
+.wheel-text {
+  text-shadow: 0 0 4px #000000;
+  user-select: none;
+  cursor: pointer;
+}
+
+.wheel-text:hover {
+  text-shadow: 0 0 4px #0051ff;
+}
