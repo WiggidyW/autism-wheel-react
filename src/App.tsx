@@ -114,7 +114,7 @@ const App = () => {
         goBack={() => setNavLocation(new NavHome())}
         onCreate={() => setNavLocation(new NavEditTemplate(Template.default()))}
         onSelect={(t: Template) => setNavLocation(new NavEditTemplate(t))}
-        onEmpty={() => <OnEmptyCard text={"Create some Slices first!"} />}
+        // onEmpty={() => <OnEmptyCard text={"Create some Slices first!"} />}
         titledItems
         deletable
       />
@@ -135,7 +135,7 @@ const App = () => {
         goBack={() => setNavLocation(new NavHome())}
         onCreate={() => setNavLocation(new NavEditUser(User.default()))}
         onSelect={(u: User) => setNavLocation(new NavEditUser(u))}
-        onEmpty={() => <OnEmptyCard text={"Create some Templates first!"} />}
+        // onEmpty={() => <OnEmptyCard text={"Create some Templates first!"} />}
         titledItems
         deletable
       />
