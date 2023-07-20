@@ -20,6 +20,7 @@ const Selector = <S extends Selectable>(props: {
   deletable?: boolean;
   onCreate?: () => void;
   onEmpty?: () => ReactElement;
+  isEmpty?: boolean;
 }) => {
   const {
     selectables,
@@ -30,8 +31,17 @@ const Selector = <S extends Selectable>(props: {
     itemKind,
     deletable,
     onEmpty,
+    isEmpty,
   } = props;
   const viewRef = useRef<HTMLDivElement>(null);
+
+  const empty = (() => {
+    // If isEmpty is not undefined, then it determines empty
+    if (isEmpty !== undefined) return isEmpty;
+    // If isEmpty is undefined, then selectables length determines empty
+    return selectables.length === 0;
+  })();
+
   return (
     <>
       <NavBar title={`Select a ${itemKind}`} goBack={goBack} />
@@ -46,7 +56,8 @@ const Selector = <S extends Selectable>(props: {
         marginTop={`${NAV_BAR_HEIGHT - 8}px`} // I don't know why it needs the -8px
         sx={{ "& .MuiCardContent-root:last-child": { paddingBottom: "8px" } }}
       >
-        {selectables.length === 0 && onEmpty !== undefined ? (
+        {/* If onEmpty is not undefined, and empty is true, then render it. */}
+        {onEmpty && empty ? (
           onEmpty()
         ) : (
           <>

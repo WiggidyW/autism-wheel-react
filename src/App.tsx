@@ -27,6 +27,7 @@ class NavViewUser {
   constructor(public user: User) {}
 }
 
+// This is the Navigation union type. It's like an enum, but it can hold data.
 type NavLocation =
   | NavHome
   | NavDataHome
@@ -42,6 +43,7 @@ type NavLocation =
 const App = () => {
   const [navLocation, setNavLocation] = useState<NavLocation>(new NavHome());
 
+  // Render the correct component based on the current navLocation.
   if (navLocation instanceof NavHome) {
     return (
       <Home
@@ -114,7 +116,8 @@ const App = () => {
         goBack={() => setNavLocation(new NavHome())}
         onCreate={() => setNavLocation(new NavEditTemplate(Template.default()))}
         onSelect={(t: Template) => setNavLocation(new NavEditTemplate(t))}
-        // onEmpty={() => <OnEmptyCard text={"Create some Slices first!"} />}
+        isEmpty={Slice.fromStorage().length === 0}
+        onEmpty={() => <OnEmptyCard text={"Create some Slices first!"} />}
         titledItems
         deletable
       />
@@ -135,7 +138,8 @@ const App = () => {
         goBack={() => setNavLocation(new NavHome())}
         onCreate={() => setNavLocation(new NavEditUser(User.default()))}
         onSelect={(u: User) => setNavLocation(new NavEditUser(u))}
-        // onEmpty={() => <OnEmptyCard text={"Create some Templates first!"} />}
+        isEmpty={Template.fromStorage().length === 0}
+        onEmpty={() => <OnEmptyCard text={"Create some Templates first!"} />}
         titledItems
         deletable
       />
@@ -155,6 +159,7 @@ const App = () => {
         selectables={User.fromStorage()}
         goBack={() => setNavLocation(new NavHome())}
         onSelect={(u: User) => setNavLocation(new NavViewUser(u))}
+        isEmpty={undefined}
         onEmpty={() => <OnEmptyCard text={"Create some Wheels first!"} />}
         titledItems
       />

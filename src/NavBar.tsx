@@ -7,7 +7,7 @@ const NAV_BAR_HEIGHT = 64;
 const NavBar = (props: {
   setTitle?: (t: string) => void;
   title: string;
-  goBack: () => void;
+  goBack?: () => void;
   children?: ReactNode;
 }): ReactElement => {
   const { title, setTitle, goBack, children } = props;
@@ -17,14 +17,16 @@ const NavBar = (props: {
       sx={{ height: `${NAV_BAR_HEIGHT}px`, alignSelf: "flex-start" }}
     >
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="back"
-          onClick={goBack}
-        >
-          <ArrowBack />
-        </IconButton>
+        {goBack && (
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="back"
+            onClick={goBack}
+          >
+            <ArrowBack />
+          </IconButton>
+        )}
         <Typography
           variant="h6"
           sx={{
